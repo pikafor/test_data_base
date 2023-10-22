@@ -58,7 +58,7 @@ public class SqlController {
     }
 
     public void showTable() {
-        String sql = "select * from test";
+        String sql = "select * from test ORDER BY id ASC ";
         Statement statement;
         ResultSet resultSet;
 

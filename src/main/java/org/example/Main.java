@@ -1,15 +1,15 @@
 package org.example;
 
 import org.example.Connection.SqlConnection;
-import org.example.Gui.SqlGui;
+import org.example.Gui.UsersGui;
 
 public class Main {
     public static void main(String[] args) {
         SqlConnection sqlConnection = new SqlConnection();
         sqlConnection.Connection();
 
-        SqlGui sqlGui = new SqlGui(sqlConnection);
+        UsersGui usersGui = new UsersGui(sqlConnection);
 
-        sqlGui.mainProcess();
+        usersGui.mainProcess();
     }
 }

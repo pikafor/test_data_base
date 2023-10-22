@@ -1,15 +1,16 @@
 package org.example.Gui;
 
+import org.example.Controller.ExelController;
 import org.example.Controller.SqlController;
 import org.example.Connection.SqlConnection;
 
 import java.util.Scanner;
 
-public class SqlGui {
+public class UsersGui {
     private boolean isRequest = true;
     SqlController sqlController;
 
-    public SqlGui(SqlConnection sqlConnection) {
+    public UsersGui(SqlConnection sqlConnection) {
         sqlController = new SqlController(sqlConnection.getConnection());
     }
 
@@ -52,6 +53,8 @@ public class SqlGui {
                     break;
                 }
                 case 4: {
+                    ExelController exelController = new ExelController();
+                    exelController.write(" ");
                     break;
                 }
                 default: {
