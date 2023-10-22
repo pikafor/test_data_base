@@ -44,10 +44,10 @@ public class SqlGui {
                 }
                 case 3: {
                     System.out.println("Введите инициалы");
-                    String initials = scanner.next();
+                    String lastName = scanner.next();
                     System.out.println("Введите дату");
                     String date = '"' + scanner.next() + '"';
-                    sqlController.mention(initials, date);
+                    sqlController.mention(lastName, date);
                     break;
                 }
                 case 4: {

@@ -45,8 +45,8 @@ public class SqlController {
         }
     }
 
-    public void mention(String initials, String date) {
-        String sql = "update test set " +  date + " = 'Отсутсвовал' where initials = '" + initials + "'";
+    public void mention(String lastName, String date) {
+        String sql = "update test set " +  date + " = 'Отсутсвовал' where lastNAme = '" + lastName + "'";
         PreparedStatement preparedStatement;
 
         try {
