@@ -34,7 +34,7 @@ public class SqlController {
         }
     }
     public void addColumn(String tableName) {
-        String sql = "ALTER TABLE test ADD COLUMN " + tableName + " varchar(15) default ('Присутсвовал');";
+        String sql = "ALTER TABLE test ADD COLUMN " + tableName + " varchar(15) default ('+');";
         PreparedStatement preparedStatement;
 
         try {
@@ -46,7 +46,7 @@ public class SqlController {
     }
 
     public void mention(String lastName, String date) {
-        String sql = "update test set " +  date + " = 'Отсутсвовал' where lastNAme = '" + lastName + "'";
+        String sql = "update test set " +  date + " = '-' where last_name = '" + lastName + "'";
         PreparedStatement preparedStatement;
 
         try {
