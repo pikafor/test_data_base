@@ -15,6 +15,7 @@ public class UsersGui {
     }
 
     public void mainProcess() {
+        //sqlController.addStudent();
         while (isRequest) {
             int choice = 0;
 
@@ -54,7 +55,7 @@ public class UsersGui {
                 }
                 case 4: {
                     ExelController exelController = new ExelController();
-                    exelController.write(" ");
+                    exelController.write(" ", sqlController.getResultSetMetaData(), sqlController.getResult());
                     break;
                 }
                 default: {

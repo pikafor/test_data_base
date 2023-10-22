@@ -34,7 +34,7 @@ public class SqlController {
         }
     }
     public void addColumn(String tableName) {
-        String sql = "ALTER TABLE test ADD COLUMN " + tableName + " varchar(15) default ('+');";
+        String sql = "ALTER TABLE test ADD COLUMN " + tableName + " varchar(15) default (' ');";
         PreparedStatement preparedStatement;
 
         try {
@@ -46,7 +46,7 @@ public class SqlController {
     }
 
     public void mention(String lastName, String date) {
-        String sql = "update test set " +  date + " = '-' where last_name = '" + lastName + "'";
+        String sql = "update test set " +  date + " = 'Н' where last_name = '" + lastName + "'";
         PreparedStatement preparedStatement;
 
         try {
@@ -58,7 +58,7 @@ public class SqlController {
     }
 
     public void showTable() {
-        String sql = "select * from test ORDER BY id ASC ";
+        String sql = "select * from test ORDER BY id ASC";
         Statement statement;
         ResultSet resultSet;
 
@@ -86,7 +86,7 @@ public class SqlController {
         }
     }
     public void addStudent() {
-        String sql = "insert into test (id, initials) values (2, 'Петров Д.А.')";
+        String sql = "insert into test (id, last_name, first_name) values (3, 'Яблочков', 'Григоша')";
         Statement statement;
 
         try {
@@ -100,6 +100,21 @@ public class SqlController {
     private String show(int i, ResultSetMetaData resultSetMetaData) {
         try {
             return resultSetMetaData.getColumnName(i);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ResultSet getResult() {
+        try {
+            return connection.createStatement().executeQuery("select * from test ORDER BY id ASC");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public ResultSetMetaData getResultSetMetaData() {
+        try {
+            return connection.createStatement().executeQuery("select * from test ORDER BY id ASC").getMetaData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
