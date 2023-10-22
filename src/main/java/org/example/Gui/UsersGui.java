@@ -1,8 +1,9 @@
 package org.example.Gui;
 
+import org.example.Connection.SqlConnection;
 import org.example.Controller.ExelController;
 import org.example.Controller.SqlController;
-import org.example.Connection.SqlConnection;
+import org.example.Pairs;
 
 import java.util.Scanner;
 
@@ -35,10 +36,12 @@ public class UsersGui {
 
             switch (choice) {
                 case 1: {
+                    Pairs pairs = new Pairs();
                     System.out.println("Введите дату");
-                    String tableName = '"' + scanner.next() + '"';
-                    sqlController.addColumn(tableName);
-                    System.out.println();
+                    String tableName = scanner.next();
+                    sqlController.addColumn('"' + tableName + '"');
+                    String pairsDate = scanner.next();
+                    sqlController.setPairs(tableName, pairsDate);
                     break;
                 }
                 case 2: {
@@ -55,7 +58,7 @@ public class UsersGui {
                 }
                 case 4: {
                     ExelController exelController = new ExelController();
-                    exelController.write(" ", sqlController.getResultSetMetaData(), sqlController.getResult());
+                    exelController.write(" ", sqlController.getResultSetMetaData("test"), sqlController.getResult("test"), sqlController.getResultSetMetaData("pairs"), sqlController.getResult("pairs"), sqlController.lastId());
                     break;
                 }
                 default: {

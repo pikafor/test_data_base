@@ -67,6 +67,7 @@ public class SqlController {
             resultSet = statement.executeQuery(sql);
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
+
             //int count =
 
             System.out.print("id ");
@@ -105,18 +106,48 @@ public class SqlController {
         }
     }
 
-    public ResultSet getResult() {
+    public ResultSet getResult(String db) {
         try {
-            return connection.createStatement().executeQuery("select * from test ORDER BY id ASC");
+            return connection.createStatement().executeQuery("select * from " + db + " ORDER BY id ASC");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public ResultSetMetaData getResultSetMetaData() {
+    public ResultSetMetaData getResultSetMetaData(String db) {
         try {
-            return connection.createStatement().executeQuery("select * from test ORDER BY id ASC").getMetaData();
+            return connection.createStatement().executeQuery("select * from " + db +" ORDER BY id ASC").getMetaData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setPairs(String date, String type) {
+        int maxId = lastId();
+        String sql = "insert into pairs (id, pairs_date, pairs_type) values (?, ?, ?);";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            setInt(preparedStatement, 1, maxId);
+            setString(preparedStatement, 2, date);
+            setString(preparedStatement, 3, type);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int lastId() {
+        int idCount = 1;
+        try {
+            String sql = "select * from pairs ORDER BY id ASC";
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
+
+            while (resultSet.next()){
+                idCount++;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return idCount;
     }
 }
