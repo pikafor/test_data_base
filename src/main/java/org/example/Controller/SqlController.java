@@ -68,9 +68,16 @@ public class SqlController {
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
             //int count =
+
+            System.out.print("id ");
+            System.out.print("Фамилия ");
+            System.out.print("Имя ");
+            System.out.println(resultSetMetaData.getColumnName(4));
             while(resultSet.next()) {
                 for (int i = 1; i <= columnCount; i++) {
                     System.out.print(resultSet.getString(show(i, resultSetMetaData)) + " ");
+                    if (i == columnCount) {
+                    }
                 }
                 System.out.println();
             }

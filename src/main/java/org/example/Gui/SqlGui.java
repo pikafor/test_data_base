@@ -33,6 +33,7 @@ public class SqlGui {
 
             switch (choice) {
                 case 1: {
+                    System.out.println("Введите дату");
                     String tableName = '"' + scanner.next() + '"';
                     sqlController.addColumn(tableName);
                     System.out.println();
@@ -43,7 +44,7 @@ public class SqlGui {
                     break;
                 }
                 case 3: {
-                    System.out.println("Введите инициалы");
+                    System.out.println("Введите Фамилию");
                     String lastName = scanner.next();
                     System.out.println("Введите дату");
                     String date = '"' + scanner.next() + '"';
