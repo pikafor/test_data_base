@@ -72,7 +72,6 @@ public class ExelController {
                     columnCount += 2;
                 }
             }
-            setRegionBorderWithMedium(new CellRangeAddress(0, 5, 0, resultSetMetaData.getColumnCount() + 1), sheet);
             FileOutputStream fileOutput = new FileOutputStream("C:\\Users\\Иван\\Desktop\\write.xlsx");
             workbook.write(fileOutput);
             fileOutput.close();
