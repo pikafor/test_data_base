@@ -86,13 +86,16 @@ public class SqlController {
             throw new RuntimeException(e);
         }
     }
-    public void addStudent() {
-        String sql = "insert into test (id, last_name, first_name) values (3, 'Яблочков', 'Григоша')";
-        Statement statement;
+    public void addStudent(String lastName, String firstName) {
+        String sql = "insert into test (id, last_name, first_name) values (?, ?, ?)";
+        PreparedStatement preparedStatement;
 
         try {
-            statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            preparedStatement = connection.prepareStatement(sql);
+            setInt(preparedStatement, 1, lastId("test"));
+            setString(preparedStatement, 2, lastName);
+            setString(preparedStatement, 3, firstName);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -122,7 +125,7 @@ public class SqlController {
     }
 
     public void setPairs(String date, String type) {
-        int maxId = lastId();
+        int maxId = lastId("pairs");
         String sql = "insert into pairs (id, pairs_date, pairs_type) values (?, ?, ?);";
         PreparedStatement preparedStatement;
         try {
@@ -136,10 +139,10 @@ public class SqlController {
         }
     }
 
-    public int lastId() {
+    public int lastId(String tableName) {
         int idCount = 1;
         try {
-            String sql = "select * from pairs ORDER BY id ASC";
+            String sql = "select * from " + tableName + " ORDER BY id ASC";
             ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
             while (resultSet.next()){

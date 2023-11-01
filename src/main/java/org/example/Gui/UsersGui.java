@@ -22,8 +22,9 @@ public class UsersGui {
 
             System.out.println("1) Добавить пару");
             System.out.println("2) Показать присутсвующих");
-            System.out.println("3) Отметить");
-            System.out.println("4) конвертировать в exel");
+            System.out.println("3) Добавить студента");
+            System.out.println("4) Отметить");
+            System.out.println("5) конвертировать в exel");
             System.out.print("Выберите действие: ");
 
             Scanner scanner = new Scanner(System.in);
@@ -49,6 +50,14 @@ public class UsersGui {
                     break;
                 }
                 case 3: {
+                    System.out.print("Введите фамилию: ");
+                    String lastName = scanner.next();
+                    System.out.print("Введите имя: ");
+                    String firstName = scanner.next();
+                    sqlController.addStudent(lastName, firstName);
+                    break;
+                }
+                case 4: {
                     System.out.println("Введите Фамилию");
                     String lastName = scanner.next();
                     System.out.println("Введите дату");
@@ -56,9 +65,9 @@ public class UsersGui {
                     sqlController.mention(lastName, date);
                     break;
                 }
-                case 4: {
+                case 5: {
                     ExelController exelController = new ExelController();
-                    exelController.write(" ", sqlController.getResultSetMetaData("test"), sqlController.getResult("test"), sqlController.getResultSetMetaData("pairs"), sqlController.getResult("pairs"), sqlController.lastId());
+                    exelController.write(" ", sqlController.getResultSetMetaData("test"), sqlController.getResult("test"), sqlController.getResultSetMetaData("pairs"), sqlController.getResult("pairs"), sqlController.lastId("pairs"));
                     break;
                 }
                 default: {

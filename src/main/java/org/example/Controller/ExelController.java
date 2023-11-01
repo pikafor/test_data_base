@@ -71,16 +71,6 @@ public class ExelController {
                     }
                     columnCount += 2;
                 }
-
-//                int columnCount = 4;
-//                for (int i = 4; i < resultSetMetaData.getColumnCount() + 1; i++) {
-//                    XSSFRow row4 = sheet.createRow(i - 1);
-//                    for (int j = 0; j < 2; j++) {
-//                        row4.createCell(columnCount - 1 + j).setCellValue(resultSet.getString(i));
-//                        //setRegionBorderWithMedium(new CellRangeAddress(i - 1, i - 1, i - 1 + j, i + j), sheet);
-//                    }
-//                    columnCount += 2;
-//                }
             }
             setRegionBorderWithMedium(new CellRangeAddress(0, 5, 0, resultSetMetaData.getColumnCount() + 1), sheet);
             FileOutputStream fileOutput = new FileOutputStream("C:\\Users\\Иван\\Desktop\\write.xlsx");

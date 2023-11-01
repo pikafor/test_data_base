@@ -11,5 +11,17 @@ public class Main {
         UsersGui usersGui = new UsersGui(sqlConnection);
 
         usersGui.mainProcess();
+
+//        String arr = "Биба,Боба";
+//        String arr2 = "";
+
+//        for (int i = 0; i < arr.length(); i++) {
+//            if (arr.charAt(i) >= 'А' && arr.charAt(i) <= 'я') {
+//                arr2 += arr.charAt(i);
+//            } else {
+//                arr2 += ' ';
+//            }
+//        }
+//        System.out.println(arr2);
     }
 }
